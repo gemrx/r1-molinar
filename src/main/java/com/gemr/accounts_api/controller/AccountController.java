@@ -43,4 +43,9 @@ public class AccountController {
     public Account update(@PathVariable Integer id, @RequestBody AccountUpdateRequest accountUpdateRequest) {
         return accountService.update(id, accountUpdateRequest);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        accountService.delete(id);
+    }
 }

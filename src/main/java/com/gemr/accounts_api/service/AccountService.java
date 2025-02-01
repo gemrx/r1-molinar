@@ -44,4 +44,14 @@ public class AccountService {
         account.setBalance(accountUpdateRequest.newBalance());
         return accountRepository.save(account);
     }
+
+    public void delete(Integer id) {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isEmpty()) {
+            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found with ID: " + id);
+        }
+        Account account = optionalAccount.get();
+        account.setStatus("inactive");
+        accountRepository.save(account);
+    }
 }
