@@ -10,13 +10,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
-      mode: always # permitir cargar data.sql
+      mode: always # Permitir cargar scripts sql al iniciar la API
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Eliminar y recrear tablas al iniciar
+      ddl-auto: create-drop  # Eliminar y recrear tablas al iniciar la API
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-    defer-datasource-initialization: true
+    defer-datasource-initialization: true # Posponer la creacion de las tablas al iniciar la API
 
