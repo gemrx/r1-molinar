@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Accounts API
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydatabase
+    username: root
+    password: rootpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always # permitir cargar data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Eliminar y recrear tablas al iniciar
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
