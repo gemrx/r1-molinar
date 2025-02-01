@@ -1,4 +1,4 @@
-package com.gemr.accounts_api.entities;
+package com.gemr.accounts_api.entity;
 
 import jakarta.persistence.*;
 

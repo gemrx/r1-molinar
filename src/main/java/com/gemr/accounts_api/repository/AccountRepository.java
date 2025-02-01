@@ -1,6 +1,6 @@
-package com.gemr.accounts_api.repositories;
+package com.gemr.accounts_api.repository;
 
-import com.gemr.accounts_api.entities.Account;
+import com.gemr.accounts_api.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

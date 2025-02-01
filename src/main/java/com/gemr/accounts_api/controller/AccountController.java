@@ -1,7 +1,9 @@
-package com.gemr.accounts_api.controllers;
+package com.gemr.accounts_api.controller;
 
-import com.gemr.accounts_api.entities.Account;
-import com.gemr.accounts_api.services.AccountService;
+import com.gemr.accounts_api.dto.AccountCreateRequest;
+import com.gemr.accounts_api.dto.AccountUpdateRequest;
+import com.gemr.accounts_api.entity.Account;
+import com.gemr.accounts_api.service.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -33,7 +35,12 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account create(@RequestBody Account account) {
+    public Account create(@RequestBody AccountCreateRequest account) {
         return accountService.create(account);
+    }
+
+    @PutMapping("/{id}")
+    public Account update(@PathVariable Integer id, @RequestBody AccountUpdateRequest accountUpdateRequest) {
+        return accountService.update(id, accountUpdateRequest);
     }
 }
