@@ -23,4 +23,8 @@ public class AccountService {
         System.out.println(accountRepository.findById(id).get());
         return accountRepository.findById(id);
     }
+
+    public Account create(Account account) {
+        return accountRepository.save(account);
+    }
 }
