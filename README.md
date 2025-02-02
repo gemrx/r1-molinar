@@ -1,8 +1,10 @@
 ## 1. Instalación
 
-### 1.1 Prerrequisitos
+### 1.1 Asegúrate de tener Java 21 instalado en tu máquina.
 
-- Asegúrate de tener **Java 21** instalado en tu máquina.
+```bash
+ java --version
+```
 
 ### 1.2 Clonar el repositorio
 
@@ -18,20 +20,12 @@ Luego, accede al directorio del repositorio:
  cd r1-molinar
 ```
 
-### 1.3 Instalación de dependencias
-
-Ejecuta el siguiente comando para descargar todas las dependencias necesarias:
-
-```bash
-  ./mvnw clean install
-```
-
-### 1.4 Configuración de la base de datos
+### 1.3 Configuración de la base de datos
 
 Hay **dos opciones** para configurar la base de datos MySQL:
 
 #### Opción 1: Usar Docker (Recomendado)
-Si deseas utilizar una base de MySQL en Docker ya configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
+Si deseas utilizar una base de MySQL en Docker previamente configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
 
 ```bash
  docker compose up -d
@@ -58,12 +52,12 @@ volumes:
 
 #### Opción 2: Usar una base de datos MySQL propia
 
-Si prefieres usar una base de datos propia, asegúrate de que MySQL esté en ejecución y luego edita el archivo application.yml en:
+Si prefieres usar una base de datos propia, asegúrate de que MySQL esté en ejecución y luego edita el archivo application.yml que se encuentra en:
 ```
 /src/main/resources/application.yml
 ```
 
-Modifica la configuración de conexión según tu base de datos:
+Y modifica la configuración de conexión según tu base de datos:
 
 ```yaml
 spring:
@@ -83,17 +77,16 @@ Reemplaza los valores:
 
 ### 1.5 Iniciar la aplicación
 
-Una vez configurada la base de datos, inicia la aplicación con:
+Una vez configurada la base de datos, inicia la aplicación  ejecutando el siguiente comando desde la raiz del proyecto:
 
 ```bash
-  ./mvnw clean spring-boot:run
+  ./mvnw spring-boot:run
 ```
 
 La API REST estará disponible en:
 
-```
-http://localhost:8080/api/v1/accounts
-```
+- http://localhost:8080/api/v1/accounts
+
 
 ---
 
