@@ -1,22 +1,17 @@
 ## 1. Instalación
 
-### 1.1 Asegúrate de tener Java 21 instalado en tu máquina.
+### 1.1 Asegúrate de tener  OpenJDK 21 instalado en tu máquina.
 
 ```bash
  java --version
 ```
 
-### 1.2 Clonar el repositorio
+### 1.2 Clona este repositorio en tu maquina local
 
-Clona el repositorio del proyecto:
+Clona este repositorio y accede al directorio raíz:
 
 ```bash
  git clone https://github.com/gemrx/r1-molinar.git
-```
-
-Luego, accede al directorio del repositorio:
-
-```bash
  cd r1-molinar
 ```
 
@@ -25,7 +20,7 @@ Luego, accede al directorio del repositorio:
 Hay **dos opciones** para configurar la base de datos MySQL:
 
 #### Opción 1: Usar Docker (Recomendado)
-Si tienes Docker instalado en tu maquina y deseas utilizar una base de MySQL en Docker previamente configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
+Si tienes Docker instalado en tu máquina, puedes ejecutar un contenedor de MySQL ya configurado para este proyecto, lo que facilita su uso. Para hacerlo, ejecuta el siguiente comando desde la raíz del proyecto:
 
 ```bash
  docker compose up -d
@@ -52,12 +47,13 @@ volumes:
 
 #### Opción 2: Usar una base de datos MySQL propia
 
-Si prefieres usar una base de datos propia, asegúrate de que MySQL esté en ejecución y luego edita el archivo application.yml que se encuentra en:
+Si ya tienes una base de datos MySQL en tu máquina local, asegúrate de que esté en ejecución y luego edita el archivo application.yml, ubicado en:
+
 ```
 /src/main/resources/application.yml
 ```
 
-Y modifica la configuración de conexión según tu base de datos:
+Y modifica la configuración del la propiedad `datasource` según tu base de datos:
 
 ```yaml
 spring:
