@@ -17,22 +17,26 @@ import java.util.Optional;
 public class AccountService {
     private final AccountRepository accountRepository;
 
+    // Constructor para inyectar el repositorio de cuentas
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
+    // Obtiene todas las cuentas
     public List<Account> getAll() {
         return accountRepository.findAll();
     }
 
+    // Obtiene una cuenta por su ID, lanza excepción si no se encuentra
     public Account getById(Integer id) {
         Optional<Account> optionalAccount = accountRepository.findById(id);
         if (optionalAccount.isEmpty()) {
-            throw new ResourceNotFoundException("Account not found with ID: " + id);
+            throw new ResourceNotFoundException("Account with ID " + id + " not found");
         }
         return optionalAccount.get();
     }
 
+    // Crea una nueva cuenta, lanza excepción si ya existe una cuenta con el mismo número
     public Account create(AccountCreateRequest accountCreateRequest) {
         Optional<Account> optionalAccount = accountRepository.findByAccountNumber(accountCreateRequest.accountNumber());
         if (optionalAccount.isPresent()) {
@@ -45,6 +49,7 @@ public class AccountService {
         return accountRepository.save(newAccount);
     }
 
+    // Actualiza el saldo de una cuenta, lanza excepción si no se encuentra la cuenta
     public Account update(Integer id, AccountUpdateRequest accountUpdateRequest) {
         Optional<Account> optionalAccount = accountRepository.findById(id);
         if (optionalAccount.isEmpty()) {
@@ -55,10 +60,11 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    // Desactiva una cuenta (cambia su estado a 'inactivo') si existe, lanza excepción si no se encuentra
     public void delete(Integer id) {
         Optional<Account> optionalAccount = accountRepository.findById(id);
         if (optionalAccount.isEmpty()) {
-            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found with ID: " + id);
+            throw new ResourceNotFoundException("Account with ID " + id + " not found");
         }
         Account account = optionalAccount.get();
         account.setStatus("inactive");

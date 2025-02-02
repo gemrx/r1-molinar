@@ -4,7 +4,7 @@ spring:
   application:
     name: Accounts API
   datasource:
-    url: jdbc:mysql://localhost:3306/mydatabase
+    url: jdbc:mysql://accounts-db:3306/mydatabase
     username: root
     password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver

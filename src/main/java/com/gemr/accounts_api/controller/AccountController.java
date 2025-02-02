@@ -5,6 +5,7 @@ import com.gemr.accounts_api.dto.AccountUpdateRequest;
 import com.gemr.accounts_api.entity.Account;
 import com.gemr.accounts_api.service.AccountService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +40,9 @@ public class AccountController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
         accountService.delete(id);
     }
+
 }
