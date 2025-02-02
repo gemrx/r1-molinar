@@ -56,8 +56,6 @@ Si prefieres ejecutar la aplicación sin Docker, sigue estos pasos:
 
 ---
 
-Con cualquiera de las dos opciones, la API Rest estará corriendo y lista para usar.
-
 ## 2. Documentación de la API Rest
 
 La API Rest expone los siguientes endpoints:
