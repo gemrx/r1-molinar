@@ -1,13 +1,4 @@
 services:
-  accounts-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      - accounts-db
-
   accounts-db:
     image: mysql:lts
     restart: always
@@ -16,3 +7,8 @@ services:
       MYSQL_DATABASE: mydatabase
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

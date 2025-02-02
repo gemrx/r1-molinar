@@ -1,58 +1,99 @@
-
 ## 1. Instalación
 
-Existen dos formas de ejecutar la aplicación: usando Docker o sin Docker. A continuación, te explico cómo hacerlo en cada caso.
+### 1.1 Prerrequisitos
 
-### Opción 1: Usando Docker
+- Asegúrate de tener **Java 21** instalado en tu máquina.
 
-Si deseas ejecutar la aplicación utilizando Docker, sigue estos pasos:
+### 1.2 Clonar el repositorio
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu_usuario/r1-molinar.git
-   ```
+Clona el repositorio del proyecto:
 
-2. Ingresa a la carpeta raíz del proyecto:
-   ```bash
-   cd r1-molinar
-   ```
+```bash
+ git clone https://github.com/gemrx/r1-molinar.git
+```
 
-3. Ejecuta el siguiente comando para levantar los contenedores con Docker:
-   ```bash
-   docker-compose up -d
-   ```
+Luego, accede al directorio del repositorio:
 
-   Este comando realizará lo siguiente:
-    - Levantará un contenedor para la base de datos MySQL en el puerto `localhost:3306`.
-    - Levantará el API Rest de Spring Boot en el puerto `http://localhost:8080/api/v1/accounts`.
+```bash
+ cd r1-molinar
+```
 
-### Opción 2: Sin Docker
+### 1.3 Instalación de dependencias
 
-Si prefieres ejecutar la aplicación sin Docker, sigue estos pasos:
+Ejecuta el siguiente comando para descargar todas las dependencias necesarias:
 
-1. Asegúrate de tener la versión de Java 21 instalada en tu máquina.
+```bash
+  ./mvnw clean install
+```
 
-2. Debes tener una base de datos MySQL en ejecución.
+### 1.4 Configuración de la base de datos
 
-3. Modifica el archivo `application.yml` ubicado en `/src/main/resources/application.yml` con la información de tu base de datos:
+Hay **dos opciones** para configurar la base de datos MySQL:
 
-   ```yaml
-   spring:
-     datasource:
-       url: jdbc:mysql://<url_de_tu_base_de_datos>:<puerto>/<nombre_base_de_datos>
-       username: <tu_usuario_mysql>
-       password: <tu_contraseña_mysql>
-       driver-class-name: com.mysql.cj.jdbc.Driver
-   ```
+#### Opción 1: Usar Docker (Recomendado)
+Si deseas utilizar una base de MySQL en Docker ya configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
 
-    - Reemplaza `<url_de_tu_base_de_datos>`, `<puerto>` `<nombre_base_de_datos>`, `<tu_usuario_mysql>`, y `<tu_contraseña_mysql>` con los valores correspondientes a tu configuración de base de datos.
+```bash
+ docker compose up -d
+```
 
-4. Una vez configurado el archivo `application.yml`, puedes compilar y ejecutar la aplicación utilizando Maven:
-   ```bash
-   mvn clean spring-boot:run
-   ```
+Esto iniciará un contenedor MySQL con la siguiente configuración:
 
-   La API Rest estará disponible en `http://localhost:8080/api/v1/accounts`.
+```yaml
+services:
+  accounts-db:
+    image: mysql:lts
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+```
+
+#### Opción 2: Usar una base de datos MySQL propia
+
+Si prefieres usar una base de datos propia, asegúrate de que MySQL esté en ejecución y luego edita el archivo application.yml en:
+```
+/src/main/resources/application.yml
+```
+
+Modifica la configuración de conexión según tu base de datos:
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://<url_de_tu_base_de_datos>:<puerto>/<nombre_base_de_datos>
+    username: <tu_usuario_mysql>
+    password: <tu_contraseña_mysql>
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
+Reemplaza los valores:
+- `<url_de_tu_base_de_datos>` con la dirección de tu servidor MySQL.
+- `<puerto>` con el puerto donde corre MySQL (por defecto es `3306`).
+- `<nombre_base_de_datos>` con el nombre de tu base de datos.
+- `<tu_usuario_mysql>` con tu usuario de MySQL.
+- `<tu_contraseña_mysql>` con tu contraseña de MySQL.
+
+### 1.5 Iniciar la aplicación
+
+Una vez configurada la base de datos, inicia la aplicación con:
+
+```bash
+  ./mvnw clean spring-boot:run
+```
+
+La API REST estará disponible en:
+
+```
+http://localhost:8080/api/v1/accounts
+```
 
 ---
 

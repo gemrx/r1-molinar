@@ -3,7 +3,6 @@ package com.gemr.accounts_api.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "accounts")
@@ -25,22 +24,9 @@ public class Account {
     @Column(nullable = false)
     private String status;
 
-    @Column(updatable = false, nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
-
     @PrePersist
     public void prePersist() {
         status = "ACTIVE";
-        createdAt = LocalDateTime.now();  // Set createdAt before saving
-        updatedAt = LocalDateTime.now();  // Set updatedAt before saving
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();  // Update updatedAt before update
     }
 
     public Integer getId() {
@@ -81,22 +67,6 @@ public class Account {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
 

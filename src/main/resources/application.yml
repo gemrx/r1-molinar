@@ -4,7 +4,7 @@ spring:
   application:
     name: Accounts API
   datasource:
-    url: jdbc:mysql://accounts-db:3306/mydatabase
+    url: jdbc:mysql://localhost:3306/mydatabase
     username: root
     password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,7 +13,7 @@ spring:
       mode: always # Permitir cargar scripts sql al iniciar la API
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Eliminar y recrear tablas al iniciar la API
+      ddl-auto: create  # Eliminar y recrear tablas al iniciar la API
     show-sql: true
     properties:
       hibernate:
