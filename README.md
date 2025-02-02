@@ -25,7 +25,7 @@ Luego, accede al directorio del repositorio:
 Hay **dos opciones** para configurar la base de datos MySQL:
 
 #### Opción 1: Usar Docker (Recomendado)
-Si deseas utilizar una base de MySQL en Docker previamente configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
+Si tienes Docker instalado en tu maquina y deseas utilizar una base de MySQL en Docker previamente configurada para este proyecto, puedes ejecutarla con el siguiente comando desde la raíz del proyecto:
 
 ```bash
  docker compose up -d
