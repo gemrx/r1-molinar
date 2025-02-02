@@ -67,7 +67,7 @@ public class AccountService {
             throw new ResourceNotFoundException("Account with ID " + id + " not found");
         }
         Account account = optionalAccount.get();
-        account.setStatus("inactive");
+        account.setStatus("INACTIVE");
         accountRepository.save(account);
     }
 }

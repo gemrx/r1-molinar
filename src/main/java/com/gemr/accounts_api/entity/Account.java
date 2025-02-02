@@ -33,7 +33,7 @@ public class Account {
 
     @PrePersist
     public void prePersist() {
-        status = "active";
+        status = "ACTIVE";
         createdAt = LocalDateTime.now();  // Set createdAt before saving
         updatedAt = LocalDateTime.now();  // Set updatedAt before saving
     }
