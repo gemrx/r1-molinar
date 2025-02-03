@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: Accounts API
+    name: Accounts APIx
   datasource:
     url: jdbc:mysql://localhost:3306/mydatabase
     username: root
@@ -13,10 +13,11 @@ spring:
       mode: always # Permitir cargar scripts sql al iniciar la API
   jpa:
     hibernate:
-      ddl-auto: create  # Eliminar y recrear tablas al iniciar la API
+      ddl-auto: create-drop  # Eliminar y recrear tablas al iniciar la API
     show-sql: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     defer-datasource-initialization: true # Posponer la creacion de las tablas al iniciar la API
 
